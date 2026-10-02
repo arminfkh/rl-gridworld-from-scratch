@@ -40,13 +40,16 @@ class GridWorld:
 
         return self.agent_position, reward, terminated
 
-
-env = GridWorld()
-env.reset()
-print(env.step(0))  # hit top border
-
-env.reset()
-print(env.step(1))  # valid right move
-
-env.agent_position = (4, 3)
-print(env.step(1))  # reach goal
+    def render(self):
+        for i in range(self.rows):
+            for j in range(self.cols):
+                if (i, j) == self.agent_position:
+                    print("A", end=" ")
+                elif (i, j) in self.walls:
+                    print("#", end=" ")
+                elif (i, j) == self.goal_position:
+                    print("G", end=" ")
+                else:
+                    print(".", end=" ")
+            print()
+        print()
