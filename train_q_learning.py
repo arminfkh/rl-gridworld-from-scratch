@@ -1,12 +1,14 @@
 from environment import GridWorld
-from agents.random_agent import RandomAgent
+from agents.q_learning import QLearningAgent
 import statistics
 
 env = GridWorld()
-agent = RandomAgent()
+agent = QLearningAgent(
+    env.rows, env.cols, num_actions=4, epsilon=0.1, alpha=0.1, gamma=0.99
+)
 
+num_episodes = 5000
 max_steps = 100
-num_episodes = 1000
 
 successes = 0
 total_rewards = []
@@ -14,14 +16,17 @@ episode_lengths = []
 
 for episode in range(num_episodes):
 
-    env.reset()
+    state = env.reset()
     total_reward = 0
     episode_length = 0
 
     for step in range(max_steps):
 
-        action = agent.choose_action()
+        action = agent.choose_action(state)
         next_state, reward, terminated = env.step(action)
+
+        agent.update(state, action, reward, next_state, terminated)
+        state = next_state
 
         total_reward += reward
         episode_length += 1
