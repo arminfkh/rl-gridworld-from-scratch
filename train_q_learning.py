@@ -44,6 +44,7 @@ def train_q_learning(
         episode_lengths.append(episode_length)
 
     success_rate = successes / num_episodes
+
     return agent, total_rewards, episode_lengths, success_rate
 
 

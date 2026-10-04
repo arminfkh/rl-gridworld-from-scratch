@@ -90,3 +90,21 @@ def print_policy(env, agent):
                 print(action_symbols[best_action], end=" ")
 
         print()
+
+
+def compare_episode_lengths(results, window=100):
+    plt.figure()
+
+    for label, lengths in results.items():
+        avg_lengths = moving_average(lengths, window)
+        episodes = np.arange(window - 1, len(lengths))
+
+        plt.plot(episodes, avg_lengths, label=label)
+
+    plt.xlabel("Episode")
+    plt.ylabel(f"Average Episode Length ({window}-episode window)")
+    plt.title("Episode Length Comparison")
+    plt.legend()
+    plt.grid()
+
+    plt.show()
