@@ -1,6 +1,3 @@
-import numpy as np
-
-
 class GridWorld:
 
     def __init__(self):

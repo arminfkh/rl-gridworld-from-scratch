@@ -13,12 +13,9 @@ MAX_STEPS = 100
 EPSILON = 0.1
 ALPHA = 0.1
 GAMMA = 0.99
-SEED = 42
 
 
 # Q-learning
-np.random.seed(SEED)
-
 q_agent, q_rewards, q_lengths, q_success_rate = train_q_learning(
     num_episodes=NUM_EPISODES,
     max_steps=MAX_STEPS,
@@ -29,8 +26,6 @@ q_agent, q_rewards, q_lengths, q_success_rate = train_q_learning(
 
 
 # SARSA
-np.random.seed(SEED)
-
 sarsa_agent, sarsa_rewards, sarsa_lengths, sarsa_success_rate = train_sarsa(
     num_episodes=NUM_EPISODES,
     max_steps=MAX_STEPS,
