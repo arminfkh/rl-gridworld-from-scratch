@@ -6,7 +6,6 @@ from utils.visualization import (
 )
 
 import statistics
-import numpy as np
 
 NUM_EPISODES = 5000
 MAX_STEPS = 100

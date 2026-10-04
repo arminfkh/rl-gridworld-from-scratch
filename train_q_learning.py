@@ -95,6 +95,7 @@ if __name__ == "__main__":
         window=100,
         save_path="plots/individual/q_learning_return.png",
     )
+
     plot_episode_length(
         episode_lengths,
         label="Q-learning",
