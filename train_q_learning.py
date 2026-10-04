@@ -1,6 +1,8 @@
 from environment import GridWorld
 from agents.q_learning import QLearningAgent
+
 import statistics
+import numpy as np
 
 env = GridWorld()
 agent = QLearningAgent(
@@ -13,6 +15,27 @@ max_steps = 100
 successes = 0
 total_rewards = []
 episode_lengths = []
+
+
+def print_policy(env, agent):
+    action_symbols = {0: "↑", 1: "→", 2: "↓", 3: "←"}
+
+    for row in range(env.rows):
+        for col in range(env.cols):
+            position = (row, col)
+
+            if position in env.walls:
+                print("#", end=" ")
+
+            elif position == env.goal_position:
+                print("G", end=" ")
+
+            else:
+                best_action = np.argmax(agent.q_table[row, col])
+                print(action_symbols[best_action], end=" ")
+
+        print()
+
 
 for episode in range(num_episodes):
 
@@ -38,9 +61,13 @@ for episode in range(num_episodes):
     total_rewards.append(total_reward)
     episode_lengths.append(episode_length)
 
+
 success_rate = successes / num_episodes
 average_return = statistics.mean(total_rewards)
 average_episode_length = statistics.mean(episode_lengths)
+
+print("\nLearned Policy:")
+print_policy(env, agent)
 
 print(f"Success rate: {success_rate:.2%}")
 print(f"Average return: {average_return:.2f}")
