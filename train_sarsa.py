@@ -95,5 +95,15 @@ if __name__ == "__main__":
     print("\nLearned Policy:")
     print_policy(env, agent)
 
-    plot_learning_curve(total_rewards, label="SARSA", window=100)
-    plot_episode_length(episode_lengths, label="SARSA", window=100)
+    plot_learning_curve(
+        total_rewards,
+        label="SARSA",
+        window=100,
+        save_path="plots/individual/sarsa_return.png",
+    )
+    plot_episode_length(
+        episode_lengths,
+        label="SARSA",
+        window=100,
+        save_path="plots/individual/sarsa_episode_length.png",
+    )

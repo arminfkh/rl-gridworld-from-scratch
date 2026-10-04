@@ -6,7 +6,7 @@ def moving_average(values, window=100):
     return np.convolve(values, np.ones(window) / window, mode="valid")
 
 
-def plot_learning_curve(rewards, label="Agent", window=100):
+def plot_learning_curve(rewards, label="Agent", window=100, save_path=None):
     avg_rewards = moving_average(rewards, window)
 
     episodes = np.arange(window - 1, len(rewards))
@@ -20,10 +20,13 @@ def plot_learning_curve(rewards, label="Agent", window=100):
     plt.legend()
     plt.grid()
 
+    if save_path:
+        plt.savefig(save_path, bbox_inches="tight")
+
     plt.show()
 
 
-def compare_learning_curves(results, window=100):
+def compare_learning_curves(results, window=100, save_path=None):
     """
     results example:
 
@@ -47,10 +50,13 @@ def compare_learning_curves(results, window=100):
     plt.legend()
     plt.grid()
 
+    if save_path:
+        plt.savefig(save_path, bbox_inches="tight")
+
     plt.show()
 
 
-def plot_episode_length(episode_lengths, label="Agent", window=100):
+def plot_episode_length(episode_lengths, label="Agent", window=100, save_path=None):
     avg_lengths = moving_average(episode_lengths, window)
 
     episodes = np.arange(window - 1, len(episode_lengths))
@@ -63,6 +69,9 @@ def plot_episode_length(episode_lengths, label="Agent", window=100):
     plt.title("Episode Length During Training")
     plt.legend()
     plt.grid()
+
+    if save_path:
+        plt.savefig(save_path, bbox_inches="tight")
 
     plt.show()
 
@@ -92,7 +101,7 @@ def print_policy(env, agent):
         print()
 
 
-def compare_episode_lengths(results, window=100):
+def compare_episode_lengths(results, window=100, save_path=None):
     plt.figure()
 
     for label, lengths in results.items():
@@ -106,5 +115,8 @@ def compare_episode_lengths(results, window=100):
     plt.title("Episode Length Comparison")
     plt.legend()
     plt.grid()
+
+    if save_path:
+        plt.savefig(save_path, bbox_inches="tight")
 
     plt.show()

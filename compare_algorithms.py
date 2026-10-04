@@ -62,6 +62,7 @@ compare_learning_curves(
         "SARSA": sarsa_rewards,
     },
     window=100,
+    save_path="plots/comparison/return_comparison.png",
 )
 
 compare_episode_lengths(
@@ -70,4 +71,5 @@ compare_episode_lengths(
         "SARSA": sarsa_lengths,
     },
     window=100,
+    save_path="plots/comparison/episode_length_comparison.png",
 )
