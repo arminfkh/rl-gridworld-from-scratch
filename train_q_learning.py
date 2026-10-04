@@ -1,5 +1,9 @@
 from environment import GridWorld
 from agents.q_learning import QLearningAgent
+from utils.visualization import (
+    plot_learning_curve,
+    plot_episode_length,
+)
 
 import statistics
 import numpy as np
@@ -95,3 +99,7 @@ print(f"Reached goal: {terminated}")
 
 print("\nLearned Policy:")
 print_policy(env, agent)
+
+plot_learning_curve(total_rewards, label="Q-learning", window=100)
+
+plot_episode_length(episode_lengths, label="Q-learning", window=100)
