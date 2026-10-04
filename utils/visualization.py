@@ -65,3 +65,28 @@ def plot_episode_length(episode_lengths, label="Agent", window=100):
     plt.grid()
 
     plt.show()
+
+
+def print_policy(env, agent):
+    action_symbols = {
+        0: "↑",
+        1: "→",
+        2: "↓",
+        3: "←",
+    }
+
+    for row in range(env.rows):
+        for col in range(env.cols):
+            position = (row, col)
+
+            if position in env.walls:
+                print("#", end=" ")
+
+            elif position == env.goal_position:
+                print("G", end=" ")
+
+            else:
+                best_action = np.argmax(agent.q_table[row, col])
+                print(action_symbols[best_action], end=" ")
+
+        print()
